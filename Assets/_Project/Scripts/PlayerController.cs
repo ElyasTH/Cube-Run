@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Vector3 _direction;
+    private Animator _animator;
     
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _originalHeight = transform.localScale.y;
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,15 +38,23 @@ public class PlayerController : MonoBehaviour
         {
             if (_currentWayPointIndex >= wayPoints.Count - 1) return;
             _currentWayPointIndex++;
-            transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
-                transform.position.z);
+            
+            _animator.SetTrigger(TagManager.Right);
+            
+            // transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
+            //     transform.position.z);
+            
+            
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             if (_currentWayPointIndex <= 0) return;
             _currentWayPointIndex--;
-            transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
-                transform.position.z);
+            
+            _animator.SetTrigger(TagManager.Left);
+            
+            // transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
+            //     transform.position.z);
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -67,6 +77,11 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, speed * Time.fixedDeltaTime * 100f);
     }
+    
+    private void OnAnimatorMove()
+    {
+        _rigidbody.MovePosition(_rigidbody.position + _animator.deltaPosition);
+    }    
     
     private void OnCollisionEnter(Collision other)
     {
