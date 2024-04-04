@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 370377887}
   - component: {fileID: 370377892}
   - component: {fileID: 370377891}
-  - component: {fileID: 370377893}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -427,12 +426,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  changeLineSpeed: 8
   wayPoints:
   - {fileID: 14994213}
   - {fileID: 380256333}
   - {fileID: 480226314}
   jumpForce: 10
-  _isGrounded: 1
   slideScale: 0.25
   slideHeight: 0.375
 --- !u!54 &370377892
@@ -460,29 +459,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!95 &370377893
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370377886}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b01021670eb9ac64bbc9414d55512ba3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &380256332
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +681,7 @@ MonoBehaviour:
   platformLength: 24
   spikeTrapPrefab: {fileID: 3953859837394866981, guid: a3318630678cba647bc4329797061295,
     type: 3}
+  spikeSpawnRate: 5
 --- !u!4 &1823336976
 Transform:
   m_ObjectHideFlags: 0
@@ -726,6 +705,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1195015358560006348, guid: 2824915d538b970418752ee6a697b1d6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2591447127896663654, guid: 2824915d538b970418752ee6a697b1d6,
         type: 3}
       propertyPath: m_Name
@@ -735,6 +719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273211583662997995, guid: 2824915d538b970418752ee6a697b1d6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5352533291259655698, guid: 2824915d538b970418752ee6a697b1d6,
         type: 3}

@@ -7,17 +7,18 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private Vector3 _direction;
     private Animator _animator;
     
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float changeLineSpeed = 3f;
     [SerializeField] private List<Transform> wayPoints;
     private int _currentWayPointIndex = 1;
+    private bool _isChangingLine = false;
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private bool _isGrounded = true;
+    private bool _isGrounded = true;
     
     [Header("Slide")]
     [SerializeField] private float slideScale = 0.25f;
@@ -33,25 +34,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!_isGrounded) return;
+        if (!_isGrounded || _isChangingLine) return;
+        
         if (Input.GetKeyDown(KeyCode.D))
         {
             if (_currentWayPointIndex >= wayPoints.Count - 1) return;
             _currentWayPointIndex++;
+
+            _isChangingLine = true;
             
-            _animator.SetTrigger(TagManager.Right);
-            
+            StartCoroutine(Move(Vector3.right));
+
             // transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
             //     transform.position.z);
-            
-            
+
+
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             if (_currentWayPointIndex <= 0) return;
             _currentWayPointIndex--;
             
-            _animator.SetTrigger(TagManager.Left);
+            _isChangingLine = true;
+            
+            StartCoroutine(Move(Vector3.left));
             
             // transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
             //     transform.position.z);
@@ -81,7 +87,7 @@ public class PlayerController : MonoBehaviour
     private void OnAnimatorMove()
     {
         _rigidbody.MovePosition(_rigidbody.position + _animator.deltaPosition);
-    }    
+    }
     
     private void OnCollisionEnter(Collision other)
     {
@@ -89,5 +95,31 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
         }
+    }
+
+    private IEnumerator Move(Vector3 direction)
+    {
+        if (direction == Vector3.right)
+        {
+            while (transform.position.x < wayPoints[_currentWayPointIndex].position.x)
+            {
+                transform.position = new Vector3(transform.position.x + changeLineSpeed * Time.deltaTime, transform.position.y,
+                    transform.position.z);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (transform.position.x > wayPoints[_currentWayPointIndex].position.x)
+            {
+                transform.position = new Vector3(transform.position.x - changeLineSpeed * Time.deltaTime, transform.position.y,
+                    transform.position.z);
+                yield return null;
+            }
+        }
+        
+        transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
+            transform.position.z);
+        _isChangingLine = false;
     }
 }

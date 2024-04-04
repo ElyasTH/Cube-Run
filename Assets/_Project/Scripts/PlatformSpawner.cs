@@ -13,6 +13,7 @@ public class PlatformSpawner : MonoBehaviour
     
     [Header("Traps")]
     [SerializeField] private GameObject spikeTrapPrefab;
+    [SerializeField] private int spikeSpawnRate = 3;
 
     private void Start()
     {
@@ -39,18 +40,33 @@ public class PlatformSpawner : MonoBehaviour
         {
             rows.Add(child);
         }
-
-        for (int i = 0; i < rows.Count; i++)
+        if (spikeSpawnRate > rows.Count)
         {
-            if (i%4 == 0)
+            spikeSpawnRate = rows.Count;
+        }
+        
+        for (int spikeCount = 0; spikeCount < spikeSpawnRate;)
+        {
+            var randomRow = rows[Random.Range(0, rows.Count)];
+            
+            bool isRowEmpty = true;
+            foreach (Transform tile in randomRow)
             {
-                var tiles = rows[i].GetComponentsInChildren<Transform>();
-                var randomTileIndex = Random.Range(0, tiles.Length);
-                var spikeTrap = Instantiate(spikeTrapPrefab, new Vector3(tiles[randomTileIndex].position.x, tiles[randomTileIndex].position.y + 0.3f,
-                    tiles[randomTileIndex].position.z), Quaternion.identity);
-                
-                spikeTrap.transform.SetParent(tiles[randomTileIndex]);
+                if (tile.childCount > 0)
+                {
+                    isRowEmpty = false;
+                    break;
+                }
             }
+            if (!isRowEmpty) continue;
+            
+            var randomTile = randomRow.GetChild(Random.Range(0, randomRow.childCount));
+            
+            var newSpike = Instantiate(spikeTrapPrefab, new Vector3(randomTile.position.x,
+                randomTile.position.y + randomTile.localScale.y/2f, randomTile.position.z), Quaternion.identity);
+            newSpike.transform.SetParent(randomTile);
+            
+            spikeCount++;
         }
     }
 }
