@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 370377887}
   - component: {fileID: 370377892}
   - component: {fileID: 370377891}
+  - component: {fileID: 370377893}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -407,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 370377886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -433,7 +434,7 @@ MonoBehaviour:
   - {fileID: 480226314}
   jumpForce: 10
   slideScale: 0.25
-  slideHeight: 0.375
+  slideHeight: 0.385
 --- !u!54 &370377892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -460,7 +461,28 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!95 &370377893
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370377886}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b01021670eb9ac64bbc9414d55512ba3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &380256332
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +703,12 @@ MonoBehaviour:
   platformLength: 24
   spikeTrapPrefab: {fileID: 3953859837394866981, guid: a3318630678cba647bc4329797061295,
     type: 3}
-  spikeSpawnRate: 5
+  spikeSpawnRate: 3
+  spikeHeight: 0.33
+  slideTrapPrefab: {fileID: 1462976360181112089, guid: 8653d8db7518b2749a3f2530e5614ccf,
+    type: 3}
+  slideSpawnRate: 2
+  slideHeight: 1.45
 --- !u!4 &1823336976
 Transform:
   m_ObjectHideFlags: 0

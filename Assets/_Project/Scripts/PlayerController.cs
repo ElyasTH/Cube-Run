@@ -23,12 +23,13 @@ public class PlayerController : MonoBehaviour
     [Header("Slide")]
     [SerializeField] private float slideScale = 0.25f;
     [SerializeField] private float slideHeight = 0.375f;
-    private float _originalHeight;
+    private float _originalScale;
+    private bool _isSliding = false;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _originalHeight = transform.localScale.y;
+        _originalScale = transform.localScale.y;
         _animator = GetComponent<Animator>();
     }
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (_currentWayPointIndex >= wayPoints.Count - 1) return;
+            if (_currentWayPointIndex >= wayPoints.Count - 1 || _isSliding) return;
             _currentWayPointIndex++;
 
             _isChangingLine = true;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            if (_currentWayPointIndex <= 0) return;
+            if (_currentWayPointIndex <= 0 || _isSliding) return;
             _currentWayPointIndex--;
             
             _isChangingLine = true;
@@ -64,18 +65,22 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (_isSliding) return;
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _isGrounded = false;
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.localScale = new Vector3(transform.localScale.x, slideHeight, transform.localScale.z);
-            transform.position = new Vector3(transform.position.x, transform.position.y - slideScale, transform.position.z);
+            transform.localScale = new Vector3(transform.localScale.x, slideScale, transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - slideHeight, transform.position.z);
+            _isSliding = true;
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
-            transform.localScale = new Vector3(transform.localScale.x, _originalHeight, transform.localScale.z);
-            transform.position = new Vector3(transform.position.x, transform.position.y + slideScale, transform.position.z);
+            if (!_isSliding) return;
+            transform.localScale = new Vector3(transform.localScale.x, _originalScale, transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + slideHeight, transform.position.z);
+            _isSliding = false;
         }
     }
 
@@ -94,6 +99,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag(TagManager.Floor))
         {
             _isGrounded = true;
+        }
+        else if (other.gameObject.CompareTag(TagManager.Obstacle))
+        {
+            Destroy(gameObject);
         }
     }
 
