@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
                 transform.position.z);
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * 300f);
+        }
     }
 
     private void FixedUpdate()
