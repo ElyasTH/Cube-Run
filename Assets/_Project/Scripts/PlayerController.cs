@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private float _originalScale;
     private bool _isSliding = false;
 
+    [Header("Particles")] [SerializeField] private ParticleSystem deathParticle;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour
         {
             if (_isSliding) return;
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _animator.ResetTrigger(TagManager.Land);
+            _animator.SetTrigger(TagManager.Jump);
             _isGrounded = false;
         }
         else if (Input.GetKeyDown(KeyCode.S))
@@ -96,16 +100,22 @@ public class PlayerController : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag(TagManager.Floor))
+        
+        if (!_isGrounded && other.gameObject.CompareTag(TagManager.Floor))
         {
             _isGrounded = true;
+            _animator.SetTrigger(TagManager.Land);
         }
         else if (other.gameObject.CompareTag(TagManager.Obstacle))
         {
+            deathParticle.gameObject.transform.SetParent(null);
+            deathParticle.Play();
             Destroy(gameObject);
         }
+        
+        
     }
-
+    
     private IEnumerator Move(Vector3 direction)
     {
         if (direction == Vector3.right)

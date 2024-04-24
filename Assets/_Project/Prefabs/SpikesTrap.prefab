@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7405088986596183937
 Transform:
   m_ObjectHideFlags: 0
@@ -50,6 +50,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spike (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
@@ -140,6 +145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,6 +223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
@@ -288,6 +303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -361,6 +381,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spike (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
@@ -451,6 +476,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -539,6 +569,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spike (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519698848276888752, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 6905086887997360717, guid: d9f0305a4a46a8c4c99cafb96eebbb7f,
         type: 3}
