@@ -7,5 +7,6 @@ public static class TagManager
     public const string Right = "Right";
     public const string Jump = "Jump";
     public const string Land = "Land";
+    public const string Sliding = "Sliding";
 
 }

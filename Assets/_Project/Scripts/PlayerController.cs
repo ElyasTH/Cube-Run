@@ -75,15 +75,19 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.localScale = new Vector3(transform.localScale.x, slideScale, transform.localScale.z);
-            transform.position = new Vector3(transform.position.x, transform.position.y - slideHeight, transform.position.z);
+            // transform.localScale = new Vector3(transform.localScale.x, slideScale, transform.localScale.z);
+            // transform.position = new Vector3(transform.position.x, transform.position.y - slideHeight, transform.position.z);
+            
+            _animator.SetBool(TagManager.Sliding, true);
             _isSliding = true;
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             if (!_isSliding) return;
-            transform.localScale = new Vector3(transform.localScale.x, _originalScale, transform.localScale.z);
-            transform.position = new Vector3(transform.position.x, transform.position.y + slideHeight, transform.position.z);
+            // transform.localScale = new Vector3(transform.localScale.x, _originalScale, transform.localScale.z);
+            // transform.position = new Vector3(transform.position.x, transform.position.y + slideHeight, transform.position.z);
+            
+            _animator.SetBool(TagManager.Sliding, false);
             _isSliding = false;
         }
     }
@@ -92,12 +96,12 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, speed * Time.fixedDeltaTime * 100f);
     }
-    
+
     private void OnAnimatorMove()
     {
         _rigidbody.MovePosition(_rigidbody.position + _animator.deltaPosition);
     }
-    
+
     private void OnCollisionEnter(Collision other)
     {
         
@@ -112,8 +116,6 @@ public class PlayerController : MonoBehaviour
             deathParticle.Play();
             Destroy(gameObject);
         }
-        
-        
     }
     
     private IEnumerator Move(Vector3 direction)
