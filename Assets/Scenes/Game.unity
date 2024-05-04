@@ -659,6 +659,7 @@ MonoBehaviour:
   spikeTrap: {fileID: 3953859837394866981, guid: a3318630678cba647bc4329797061295,
     type: 3}
   spikeTrapHeight: 0.32
+  spikeSpawnRate: 8
 --- !u!4 &911063708
 Transform:
   m_ObjectHideFlags: 0

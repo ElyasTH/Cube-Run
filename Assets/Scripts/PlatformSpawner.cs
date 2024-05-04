@@ -10,6 +10,7 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] private float platformLength = 24f;
     [SerializeField] private GameObject spikeTrap;
     [SerializeField] private float spikeTrapHeight = 0.32f;
+    [SerializeField] private int spikeSpawnRate = 4;
     
     private void Update()
     {
@@ -29,17 +30,21 @@ public class PlatformSpawner : MonoBehaviour
 
     private void SetupTraps(Transform newPlatform)
     {
-
-        for (int i = 0; i < newPlatform.childCount; i++)
-        {
-            if (i % 4 == 0)
-            {
-                var randomTile = newPlatform.GetChild(i).GetChild(Random.Range(0, 3));
-                Instantiate(spikeTrap,
-                    new Vector3(randomTile.position.x, randomTile.position.y + spikeTrapHeight, randomTile.position.z),
-                    Quaternion.identity);
-            }
-        }
+        List<Transform> occupiedRows = new List<Transform>();
         
+        for (int i = 0; i < spikeSpawnRate; i++)
+        {
+            var randomRow = newPlatform.GetChild(Random.Range(0, newPlatform.childCount));
+            while (occupiedRows.Contains(randomRow))
+            {
+                randomRow = newPlatform.GetChild(Random.Range(0, newPlatform.childCount));
+            }
+            occupiedRows.Add(randomRow);
+            
+            var randomTile = randomRow.GetChild(Random.Range(0, randomRow.childCount));
+
+            Instantiate(spikeTrap, new Vector3(randomTile.position.x, randomTile.position.y + spikeTrapHeight,
+                randomTile.position.z), Quaternion.identity);
+        }
     }
 }
