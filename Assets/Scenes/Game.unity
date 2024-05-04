@@ -319,7 +319,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370377886}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a62f6a97c1c7a644a8a8cf00d7f8f8e5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -654,8 +654,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platform: {fileID: 2591447127896663654, guid: 2824915d538b970418752ee6a697b1d6,
     type: 3}
-  spawnTime: 1.5
+  spawnTime: 1
   platformLength: 24
+  spikeTrap: {fileID: 3953859837394866981, guid: a3318630678cba647bc4329797061295,
+    type: 3}
+  spikeTrapHeight: 0.32
 --- !u!4 &911063708
 Transform:
   m_ObjectHideFlags: 0

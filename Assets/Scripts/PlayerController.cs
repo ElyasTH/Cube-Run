@@ -48,4 +48,14 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed * Time.fixedDeltaTime * 100f);
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            var camera = Camera.main;
+            camera.transform.SetParent(null);
+            Destroy(gameObject);
+        }
+    }
 }
