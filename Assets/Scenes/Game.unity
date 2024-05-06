@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -241,11 +242,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: -0.3696438, z: 0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 8.85, y: 9.295, z: -7.4629993}
+  m_LocalPosition: {x: 7.5, y: 8.993, z: -5.613}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 370377890}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -291,6 +292,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dae76575a59db49a24e9191f6a2875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 370377890}
 --- !u!1 &370377886
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +409,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.8, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 330585546}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &370377891
@@ -417,6 +430,8 @@ MonoBehaviour:
   - {fileID: 380256333}
   - {fileID: 480226314}
   jumpForce: 500
+  slideHeight: 0.375
+  slideScale: 0.25
 --- !u!54 &370377892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -661,6 +676,10 @@ MonoBehaviour:
     type: 3}
   spikeTrapHeight: 0.32
   spikeSpawnRate: 4
+  slideTrap: {fileID: 1462976360181112089, guid: 8653d8db7518b2749a3f2530e5614ccf,
+    type: 3}
+  slideTrapHeight: 1.45
+  slideTrapSpawnRate: 4
 --- !u!4 &911063708
 Transform:
   m_ObjectHideFlags: 0
@@ -764,6 +783,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 330585546}
   - {fileID: 370377890}
   - {fileID: 7321996816738740995}
   - {fileID: 14994213}
