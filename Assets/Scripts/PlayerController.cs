@@ -78,8 +78,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            var camera = Camera.main;
-            camera.transform.SetParent(null);
             Destroy(gameObject);
         }
 
