@@ -7,7 +7,8 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    
+
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private float speed = 5f;
     [SerializeField] private List<Transform> wayPoints;
     private int _currentWayPointIndex = 1;
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
+            gameManager.FinishGame();
         }
 
         if (other.gameObject.CompareTag("Floor"))
