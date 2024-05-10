@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
     private float _originalScale;
     private bool _isSliding = false;
 
-    [Header("Particles")] [SerializeField] private ParticleSystem deathParticle;
+    [Header("Death")]
+    [SerializeField] private ParticleSystem deathParticle;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
             // transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
             //     transform.position.z);
 
-
+            SoundManager.instance.PLAY_CHANGE_LINE_SOUND();
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
@@ -64,14 +65,17 @@ public class PlayerController : MonoBehaviour
             
             // transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
             //     transform.position.z);
+            
+            SoundManager.instance.PLAY_CHANGE_LINE_SOUND();
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_isSliding) return;
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            _animator.ResetTrigger(TagManager.Land);
             _animator.SetTrigger(TagManager.Jump);
             _isGrounded = false;
+            
+            SoundManager.instance.PLAY_JUMP_SOUND();
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -80,6 +84,8 @@ public class PlayerController : MonoBehaviour
             
             _animator.SetBool(TagManager.Sliding, true);
             _isSliding = true;
+            
+            SoundManager.instance.PLAY_SLIDE_SOUND();
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
@@ -89,6 +95,8 @@ public class PlayerController : MonoBehaviour
             
             _animator.SetBool(TagManager.Sliding, false);
             _isSliding = false;
+            
+            SoundManager.instance.PLAY_SLIDE_SOUND();
         }
     }
 
@@ -104,17 +112,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        
         if (!_isGrounded && other.gameObject.CompareTag(TagManager.Floor))
         {
             _isGrounded = true;
-            _animator.SetTrigger(TagManager.Land);
         }
         else if (other.gameObject.CompareTag(TagManager.Obstacle))
         {
+            SoundManager.instance.PLAY_DEATH_SOUND();
             deathParticle.gameObject.transform.SetParent(null);
             deathParticle.Play();
             Destroy(gameObject);
+            
+            GameManager.instance.FinishGame();
         }
     }
     
