@@ -5,18 +5,14 @@ using UnityEngine;
 public class PlatformSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject platform;
-    [SerializeField] private float spawnTime = 1.5f;
-    private float elapsedTime = 0f;
-    [SerializeField] private float platformLength = 24f;
+    [SerializeField] private float elapsedTime = 0f;
     private void Update()
     {
         elapsedTime += Time.deltaTime;
         
-        if (elapsedTime >= spawnTime)
+        if (elapsedTime >= 2f)
         {
-            Instantiate(platform, new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength),
-                Quaternion.identity);
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength);
+            Instantiate(platform, )
             
             elapsedTime = 0;
         }
