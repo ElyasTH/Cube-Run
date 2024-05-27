@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5283899898220702200}
   m_Layer: 0
   m_Name: Center
-  m_TagString: Obstacle
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 8968486194588430613}
   m_Layer: 0
   m_Name: SlideTrap
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 3502815922981933770}
   m_Layer: 0
   m_Name: LeftSide
-  m_TagString: Obstacle
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 5733109367094518755}
   m_Layer: 0
   m_Name: RightSide
-  m_TagString: Obstacle
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
