@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5459134713802533696}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8680266572137749181}
-  m_Material: {fileID: 13400000, guid: a62f6a97c1c7a644a8a8cf00d7f8f8e5, type: 2}
+  m_Material: {fileID: 13400000, guid: 0c2edd84b2239cd409df7a57c2948c4f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
