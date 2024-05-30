@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private float speed = 5f;
     [SerializeField] private List<Transform> wayPoints;
+    [SerializeField] private ParticleSystem deathParticle;
+    [SerializeField] private SoundManager soundManager;
     private int _currentWayPointIndex = 1;
     
     [Header("Jump Settings")]
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
                 transform.position.z);
 
-
+            soundManager.PLAY_CHANGE_LINE_SOUND();
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
@@ -52,21 +54,26 @@ public class PlayerController : MonoBehaviour
             
             transform.position = new Vector3(wayPoints[_currentWayPointIndex].position.x, transform.position.y,
                 transform.position.z);
+
+            soundManager.PLAY_CHANGE_LINE_SOUND();
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce);
+            soundManager.PLAY_JUMP_SOUND();
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             transform.position = new Vector3(transform.position.x, slideHeight, transform.position.z);
             transform.localScale = new Vector3(transform.localScale.x, slideScale, transform.localScale.z);
+            soundManager.PLAY_SLIDE_SOUND();
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             transform.position = new Vector3(transform.position.x, defaultHeight, transform.position.z);
             transform.localScale = new Vector3(transform.localScale.x, defaultScale, transform.localScale.z);
+            soundManager.PLAY_SLIDE_SOUND();
         }
     }
 
@@ -79,6 +86,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
+            deathParticle.transform.SetParent(null);
+            deathParticle.Play();
             Destroy(gameObject);
             gameManager.FinishGame();
         }

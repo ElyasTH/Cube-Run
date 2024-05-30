@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private float scoreIncrementTime;
+    [SerializeField] private SoundManager soundManager;
+
     private int score;
     private float _elapsedTime;
 
@@ -28,5 +30,7 @@ public class GameManager : MonoBehaviour
     public void FinishGame()
     {
         isGameFinished = true;
+        soundManager.PLAY_DEATH_SOUND();
+        soundManager.STOP_MUSIC();
     }
 }
