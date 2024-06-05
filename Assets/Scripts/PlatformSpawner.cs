@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlatformSpawner : MonoBehaviour
 {
@@ -21,21 +23,21 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] private float slideTrapHeight;
     [SerializeField] private int slideTrapSpawnRate = 4;
     
-    private void Update()
-    {
-        elapsedTime += Time.deltaTime;
-        
-        if (elapsedTime >= spawnTime)
-        {
-            var newPlatform = Instantiate(platform, new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength),
-                Quaternion.identity);
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength);
-            
-            SetupTraps(newPlatform.transform);
-            
-            elapsedTime = 0;
-        }
-    }
+    // private void Update()
+    // {
+    //     elapsedTime += Time.deltaTime;
+    //     
+    //     if (elapsedTime >= spawnTime)
+    //     {
+    //         var newPlatform = Instantiate(platform, new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength),
+    //             Quaternion.identity);
+    //         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength);
+    //         
+    //         SetupTraps(newPlatform.transform);
+    //         
+    //         elapsedTime = 0;
+    //     }
+    // }
 
     private void SetupTraps(Transform newPlatform)
     {
@@ -69,6 +71,18 @@ public class PlatformSpawner : MonoBehaviour
 
             Instantiate(slideTrap, new Vector3(randomTile.position.x, randomTile.position.y + slideTrapHeight,
                 randomTile.position.z), Quaternion.identity);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            var newPlatform = Instantiate(platform, new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength),
+                Quaternion.identity);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + platformLength);
+            
+            SetupTraps(newPlatform.transform);
         }
     }
 }
